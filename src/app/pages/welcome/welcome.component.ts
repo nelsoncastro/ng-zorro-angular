@@ -49,7 +49,7 @@ export class WelcomeComponent implements OnInit {
   formatterReal = (value: number) => `R$ ${value}`;
   parserReal = (value: string) => value.replace('R$ ', '');
 
-  url = "http://localhost:3000/products";
+  url = "https://my-json-server.typicode.com/nelsoncastro/ng-zorro-angular/products";
 
   product = {} as Product;
 

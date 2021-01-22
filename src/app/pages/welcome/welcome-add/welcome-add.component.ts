@@ -22,7 +22,7 @@ interface Country {
 })
 export class WelcomeAddComponent implements OnInit {
 
-  url = "http://localhost:3000/products";
+  url = "https://my-json-server.typicode.com/nelsoncastro/ng-zorro-angular/products";
 
   // Headers
   httpOptions = {
