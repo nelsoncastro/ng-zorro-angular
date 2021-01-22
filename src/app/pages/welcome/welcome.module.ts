@@ -1,18 +1,6 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { NZ_ICONS } from 'ng-zorro-antd/icon';
-import { pt_BR } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
-import pt from '@angular/common/locales/pt';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IconsProviderModule } from './icons-provider.module';
 
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
@@ -43,7 +31,6 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzI18nModule } from 'ng-zorro-antd/i18n';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -76,36 +63,23 @@ import { NzTimelineModule } from 'ng-zorro-antd/timeline';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
-import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
 import { NzPipesModule } from 'ng-zorro-antd/pipes';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
-import { IconDefinition } from '@ant-design/icons-angular';
-import * as AllIcons from '@ant-design/icons-angular/icons';
+import { WelcomeRoutingModule } from './welcome-routing.module';
 
-registerLocaleData(pt);
-
-const antDesignIcons = AllIcons as {
-  [key: string]: IconDefinition;
-};
-const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
+import { WelcomeComponent } from './welcome.component';
+import { WelcomeAddComponent } from './welcome-add/welcome-add.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    IconsProviderModule,
     NzAffixModule,
     NzAlertModule,
     NzAnchorModule,
@@ -132,7 +106,6 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzGridModule,
     NzI18nModule,
     NzIconModule,
-    NzImageModule,
     NzInputModule,
     NzInputNumberModule,
     NzLayoutModule,
@@ -167,16 +140,15 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzTransButtonModule,
     NzTransferModule,
     NzTreeModule,
-    NzTreeViewModule,
     NzTreeSelectModule,
     NzTypographyModule,
     NzUploadModule,
     NzWaveModule,
     NzResizableModule,
     NzPipesModule,
-    ],
-  providers: [{ provide: NZ_I18N, useValue: pt_BR }, { provide: NZ_ICONS, useValue: icons }],
-  bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+    NzSpaceModule,
+    WelcomeRoutingModule],
+  declarations: [WelcomeComponent, WelcomeAddComponent],
+  exports: [WelcomeComponent]
 })
-export class AppModule { }
+export class WelcomeModule { }

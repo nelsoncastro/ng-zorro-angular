@@ -1,0 +1,37 @@
+{
+  "products": [
+    {
+      "name": "Licensed Frozen Hat",
+      "description": "Incidunt et magni est ut.",
+      "category": "A",
+      "country": "BR",
+      "quantity": 56840,
+      "price": 170.5,
+      "active": false,
+      "rate": 3,
+      "id": 1
+    },
+    {
+      "name": "Rustic Concrete Chicken",
+      "description": "Sint libero mollitia.",
+      "category": "B",
+      "country": "BR",
+      "quantity": 9358,
+      "price": 302.1,
+      "active": "true",
+      "rate": 5,
+      "id": 2
+    },
+    {
+      "name": "Fantastic Metal Computer",
+      "description": "In consequuntur cupiditate et unde minus.",
+      "category": "C",
+      "country": "BR",
+      "quantity": 1000,
+      "price": 279.1,
+      "active": false,
+      "rate": 2,
+      "id": 3
+    }
+  ]
+}

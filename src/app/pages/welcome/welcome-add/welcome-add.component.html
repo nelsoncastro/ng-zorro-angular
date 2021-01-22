@@ -1,0 +1,110 @@
+<nz-breadcrumb [nzSeparator]="iconTemplate" style="padding-bottom: 20px;">
+  <nz-breadcrumb-item>
+    Home
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    Produto
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    {{id === undefined ? 'Novo': 'Alteração'}}
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<ng-template #iconTemplate><em nz-icon nzType="arrow-right"></em></ng-template>
+
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm.value)" class="search-form">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Nome</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validando..." [nzErrorTip]="nameErrorTpl">
+          <input nz-input formControlName="name" placeholder="validação assíncrona. Digite nome existente" />
+          <ng-template #nameErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Nome do Produto é obrigatório
+            </ng-container>
+            <ng-container *ngIf="control.hasError('duplicated')">
+              Produto já existe
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Descrição</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Descrição é obrigatória">
+          <textarea formControlName="description" nz-input rows="2" placeholder="escreva qualquer coisa"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Categoria</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Categoria do produto é obrigatória">
+          <nz-radio-group formControlName="category" id="category" nzHasFeedback nzErrorTip="Informe a categoria do produto!">
+            <label nz-radio nzValue="A">A</label>
+            <label nz-radio nzValue="B">B</label>
+            <label nz-radio nzValue="C">C</label>
+            <label nz-radio nzValue="D">D</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>País de Origem</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="countryErrorTpl">
+          <nz-select formControlName="country" id="country" nzHasFeedback nzErrorTip="Informe o país de origem!">
+            <nz-option *ngFor="let country of countrys" nzValue="{{country.code}}" nzLabel="{{country.name}}"></nz-option>
+          </nz-select>
+          <ng-template #countryErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              País de origem é obrigatório
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Preço</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="priceErrorTpl">
+          <nz-input-number [nzMin]="1" [nzStep]="0.1" [nzFormatter]="formatterReal" [nzParser]="parserReal" formControlName="price"></nz-input-number>
+          <ng-template #priceErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Preço do Produto é obrigatório
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Quantidade</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="quantityErrorTpl">
+          <nz-input-number [nzMin]="1" [nzStep]="1" formControlName="quantity"></nz-input-number>
+          <ng-template #quantityErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Quantidade do Produto é obrigatório
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">Ativo</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-switch formControlName="active" [nzCheckedChildren]="checkedTemplate" [nzUnCheckedChildren]="unCheckedTemplate"></nz-switch>
+          <ng-template #checkedTemplate><i nz-icon nzType="check"></i></ng-template>
+          <ng-template #unCheckedTemplate><i nz-icon nzType="close"></i></ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">Avalição</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-rate formControlName="rate" nzAllowHalf></nz-rate>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control [nzOffset]="7" [nzSpan]="12">
+          <button nz-button nzType="primary" [disabled]="!validateForm.valid">Salvar</button>
+          <button nz-button (click)="resetForm($event)">Cancelar</button>
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
