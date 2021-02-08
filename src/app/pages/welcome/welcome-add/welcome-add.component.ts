@@ -162,7 +162,8 @@ export class WelcomeAddComponent implements OnInit {
   }
 
   createNotification(type: string, title: string, message: string): void {
-    this.notification.create(type, title, message);
+    const ref = this.notification.create(type, title, message, { nzKey: type, nzDuration: 0 });
+    console.log(ref);
   }
 
   showSuccessMsg(message: string): void {

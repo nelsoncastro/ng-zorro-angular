@@ -74,6 +74,8 @@ import { WelcomeRoutingModule } from './welcome-routing.module';
 
 import { WelcomeComponent } from './welcome.component';
 import { WelcomeAddComponent } from './welcome-add/welcome-add.component';
+import { WelcomeTwoComponent } from './welcome-two/welcome-two.component';
+import { WelcomeThreeComponent } from './welcome-three/welcome-three.component';
 
 @NgModule({
   imports: [
@@ -148,7 +150,7 @@ import { WelcomeAddComponent } from './welcome-add/welcome-add.component';
     NzPipesModule,
     NzSpaceModule,
     WelcomeRoutingModule],
-  declarations: [WelcomeComponent, WelcomeAddComponent],
+  declarations: [WelcomeComponent, WelcomeAddComponent, WelcomeTwoComponent, WelcomeThreeComponent],
   exports: [WelcomeComponent]
 })
 export class WelcomeModule { }

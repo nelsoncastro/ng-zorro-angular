@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzNotificationService, NzNotificationRef } from 'ng-zorro-antd/notification';
 
 export interface Product {
   id: number;
@@ -56,6 +56,7 @@ export class WelcomeComponent implements OnInit {
   products: Product[] = [];
 
   validateForm!: FormGroup;
+
   captchaTooltipIcon: NzFormTooltipIcon = {
     type: 'info-circle',
     theme: 'twotone'
@@ -135,7 +136,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   createNotification(type: string, title: string, message: string): void {
-    this.notification.create(type, title, message);
+    this.notification.create(type, title, message, { nzKey: type, nzDuration: 0 });
   }
 
   showSuccessMsg(message: string): void {
