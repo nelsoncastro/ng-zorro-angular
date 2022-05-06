@@ -1,0 +1,46 @@
+<nz-breadcrumb [nzSeparator]="iconTemplate" style="padding-bottom: 20px;">
+  <nz-breadcrumb-item>
+    Home
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    Departamento
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    {{id === undefined ? 'Novo': 'Alteração'}}
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<ng-template #iconTemplate><em nz-icon nzType="arrow-right"></em></ng-template>
+
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="search-form">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Nome</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validando..." [nzErrorTip]="nameErrorTpl">
+          <input nz-input formControlName="name" placeholder="Digite nome do departamento" />
+          <ng-template #nameErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Nome do departamento é obrigatório
+            </ng-container>
+            <ng-container *ngIf="control.hasError('duplicated')">
+              Departamento já existe
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">Ativo</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-switch formControlName="active" [nzCheckedChildren]="checkedTemplate" [nzUnCheckedChildren]="unCheckedTemplate"></nz-switch>
+          <ng-template #checkedTemplate><em nz-icon nzType="check"></em></ng-template>
+          <ng-template #unCheckedTemplate><em nz-icon nzType="close"></em></ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control [nzOffset]="7" [nzSpan]="12">
+          <button nz-button nzType="primary" [disabled]="!validateForm.valid">Salvar</button>
+          <button nz-button (click)="resetForm($event)">Cancelar</button>
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>

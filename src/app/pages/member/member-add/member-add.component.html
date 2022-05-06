@@ -1,0 +1,82 @@
+<nz-breadcrumb [nzSeparator]="iconTemplate" style="padding-bottom: 20px;">
+  <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+  <nz-breadcrumb-item>Membro</nz-breadcrumb-item>
+  <nz-breadcrumb-item>{{id === undefined ? 'Novo': 'Alteração'}}</nz-breadcrumb-item>
+</nz-breadcrumb>
+<ng-template #iconTemplate><em nz-icon nzType="arrow-right"></em></ng-template>
+
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="search-form">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2" nzRequired>Nome</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validando..." [nzErrorTip]="nameErrorTpl">
+      <input nz-input formControlName="name" placeholder="validação assíncrona. Digite nome existente" />
+      <ng-template #nameErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          Nome do Membro é obrigatório
+        </ng-container>
+        <ng-container *ngIf="control.hasError('duplicated')">
+          Membro já existe
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2">Ativo(a)</nz-form-label>
+    <nz-form-control [nzSpan]="2">
+      <nz-switch formControlName="active" [nzCheckedChildren]="checkedTemplate" [nzUnCheckedChildren]="unCheckedTemplate"></nz-switch>
+      <ng-template #checkedTemplate><em nz-icon nzType="check"></em></ng-template>
+      <ng-template #unCheckedTemplate><em nz-icon nzType="close"></em></ng-template>
+    </nz-form-control>
+    <nz-form-label [nzSpan]="2">Batizado(a)</nz-form-label>
+    <nz-form-control [nzSpan]="2">
+      <nz-switch formControlName="baptized" [nzCheckedChildren]="checkedTemplate" [nzUnCheckedChildren]="unCheckedTemplate"></nz-switch>
+      <ng-template #checkedTemplate><em nz-icon nzType="check"></em></ng-template>
+      <ng-template #unCheckedTemplate><em nz-icon nzType="close"></em></ng-template>
+    </nz-form-control>
+    <nz-form-label [nzSpan]="2">Casado(a)</nz-form-label>
+    <nz-form-control [nzSpan]="2">
+      <nz-switch formControlName="married" [nzCheckedChildren]="checkedTemplate" [nzUnCheckedChildren]="unCheckedTemplate"></nz-switch>
+      <ng-template #checkedTemplate><em nz-icon nzType="check"></em></ng-template>
+      <ng-template #unCheckedTemplate><em nz-icon nzType="close"></em></ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2">CEP</nz-form-label>
+    <nz-form-control [nzSpan]="4" [nzErrorTip]="cepErrorTpl">
+      <input type="text" maxlength="8" nz-input formControlName="cep" placeholder="Digite a CEP" />
+      <ng-template #cepErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          CEP do Membro é obrigatório
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2">Endereço</nz-form-label>
+    <nz-form-control [nzSpan]="12" [nzErrorTip]="addressErrorTpl">
+      <input nz-input formControlName="address" placeholder="Digite o endereço" />
+      <ng-template #addressErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          Endereço do Membro é obrigatório
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+
+    <nz-form-label [nzSpan]="2">Cidade</nz-form-label>
+    <nz-form-control [nzSpan]="10" [nzErrorTip]="cityErrorTpl">
+      <input nz-input formControlName="city" placeholder="Digite a cidade" />
+      <ng-template #cityErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          Cidade do Membro é obrigatório
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<div class="button-bar">
+  <button nz-button (click)="submitForm()" nzType="primary" [disabled]="!validateForm.valid">Salvar</button>
+  <button nz-button (click)="resetForm($event)">Cancelar</button>
+<div>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "demo-ng-zorro": {
+    "ibrb-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/demo-ng-zorro",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,9 +31,33 @@
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "stylePreprocessorOptions": {
+              "includePaths": ["./src/styles"]
+            },
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "zrender/lib/svg/svg",
+              "zrender/lib/vml/vml"
+            ]
           },
           "configurations": {
+            "develop": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.develop.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -51,8 +75,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -66,18 +90,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo-ng-zorro:build"
+            "browserTarget": "ibrb-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "demo-ng-zorro:build:production"
+              "browserTarget": "ibrb-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo-ng-zorro:build"
+            "browserTarget": "ibrb-web:build"
           }
         },
         "test": {
@@ -115,16 +139,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "demo-ng-zorro:serve"
+            "devServerTarget": "ibrb-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "demo-ng-zorro:serve:production"
+              "devServerTarget": "ibrb-web:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "demo-ng-zorro"
+  "defaultProject": "ibrb-web"
 }

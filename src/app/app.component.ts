@@ -6,9 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  isCollapsed = false;
-
-  toggleCollapsed(): void {
-    this.isCollapsed = !this.isCollapsed;
-  }
 }

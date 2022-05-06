@@ -1,0 +1,17 @@
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(validateForm.value)">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Favor informar seu E-mail!">
+      <nz-input-group nzPrefixIcon="mail">
+        <input type="text" nz-input formControlName="email" placeholder="E-mail" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Favor informar sua senha!">
+      <nz-input-group nzPrefixIcon="lock">
+        <input type="password" nz-input formControlName="password" placeholder="Senha" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Entrar</button>
+</form>
